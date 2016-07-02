@@ -29,7 +29,7 @@ def get_wav_file_length(wav_file):
     return duration
 
 
-def main(label_path, wav_file, output_text_grid):
+def main(label_path, wav_file, output_text_grid, csv_file):
     # defines
     num_of_frames = 5
     msc_2_sec = 0.001
@@ -39,7 +39,7 @@ def main(label_path, wav_file, output_text_grid):
         print >>sys.stderr, "label file does not exits"
         return
     if not os.path.exists(wav_file):
-        print >>sys.stderr, "wav file does not exits"
+        print >>sys.stderr, "wav file $s does not exits" % wav_file
         return
 
     # read the label file and parse it
@@ -64,6 +64,12 @@ def main(label_path, wav_file, output_text_grid):
     text_grid.append(vowels_tier)
     text_grid.write(output_text_grid)
 
+    if csv_file:
+        with open(csv_file, 'w') as f:
+            f.write("FILE, DURATION, START_TIME, END_TIME\n")
+            f.write("%s, %f, %f, %f\n" % (wav_file,
+                                          1000.0*(float(offset)*num_of_frames*msc_2_sec-float(onset)*num_of_frames*msc_2_sec),
+                                          float(onset)*num_of_frames*msc_2_sec, float(offset)*num_of_frames*msc_2_sec))
 
 if __name__ == "__main__":
     # the first argument is the label file path
@@ -75,7 +81,8 @@ if __name__ == "__main__":
     parser.add_argument("label_filename", help="The label file")
     parser.add_argument("wav_filename", help="The wav file")
     parser.add_argument("output_text_grid", help="The output TextGrid file")
+    parser.add_argument("--csv_output", help="Output results to a CSV file")
     args = parser.parse_args()
 
     # main function
-    main(args.label_filename, args.wav_filename, args.output_text_grid)
+    main(args.label_filename, args.wav_filename, args.output_text_grid, args.csv_file)

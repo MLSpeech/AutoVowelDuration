@@ -1,6 +1,5 @@
-import os
+
 import sys
-import shutil
 import argparse
 from subprocess import call
 import front_end.extract_features as fe

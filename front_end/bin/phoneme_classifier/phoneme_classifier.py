@@ -91,13 +91,13 @@ if __name__ == "__main__":
 
     # binaries
     sox_bin = "sox"
-    hcopy_bin = "Hcopy"
+    hcopy_bin = "HCopy"
     phoneme_classifier_bin = bin_platform + "/PhonemeFrameBasedDecode"
     htk_config = "config/htk.config"
     mfcc_stats_file = "config/mfcc.stats"
     phoneme_list_filename = "config/phonemes_39"
     mfcc_tmp_file = "config/tmp.mfcc"
-    mfcc_extractor = "config/htk_ceps_dist"
+    mfcc_extractor = bin_platform + "/htk_ceps_dist"
 
     # frame-base phoneme classifier parameters
     phoneme_classifier_pad = "5"

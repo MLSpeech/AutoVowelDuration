@@ -28,7 +28,7 @@ def main(wav_filename, output_textgrid_filename, csv_filename):
     print "Converting the wav file to 16khz sample rate"
     #tmp_wav16_filename = wav_filename.replace(".wav", "_16.wav")
     tmp_wav16_filename = generate_tmp_filename("wav")
-    cmd = "utils/sbin/sox %s -r 16000 %s" % (wav_filename, tmp_wav16_filename)
+    cmd = "sox %s -r 16000 %s" % (wav_filename, tmp_wav16_filename)
     easy_call(cmd)
 
     # consts

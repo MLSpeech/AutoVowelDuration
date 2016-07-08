@@ -3,6 +3,7 @@ import tempfile
 import os
 from subprocess import call
 import wave
+from sys import platform as _platform
 
 
 def easy_call(command):
@@ -26,10 +27,20 @@ if __name__ == "__main__":
     parser.add_argument("--scores_filename", default="", help="output scores matrix")
     args = parser.parse_args()
 
+    if _platform == "linux" or _platform == "linux2":
+        # linux
+        bin_platform = "bin/_Linux_Release"
+    elif _platform == "darwin":
+        # OS X
+        bin_platform = "bin/_Darwin_Release"
+    elif _platform == "win32":
+        print "Error: Windows platform not supported"
+        exit(-1)
+
     # binaries
-    sox_bin = "sbin/sox"
-    hcopy_bin = "sbin/Hcopy"
-    phoneme_classifier_bin = "bin/PhonemeFrameBasedDecode"
+    sox_bin = "sox"
+    hcopy_bin = "Hcopy"
+    phoneme_classifier_bin = bin_platform + "/PhonemeFrameBasedDecode"
     htk_config = "config/htk.config"
     mfcc_stats_file = "config/mfcc.stats"
     phoneme_list_filename = "config/phonemes_39"

@@ -7,6 +7,7 @@ import shutil
 import argparse
 from subprocess import call
 import numpy as np
+from sys import platform as _platform
 
 __author__ = 'yossiadi'
 
@@ -24,8 +25,18 @@ def easy_call(command):
 
 
 def extract_acoustic_features(input_file, feature_file, label_file):
+   if _platform == "linux" or _platform == "linux2":
+        # linux
+        bin_platform = "bin/_Linux_Release"
+    elif _platform == "darwin":
+        # OS X
+        bin_platform = "bin/_Darwin_Release"
+    elif _platform == "win32":
+        print "Error: Windows platform not supported"
+        exit(-1)
+
     if os.path.exists(input_file) and os.path.exists(feature_file) and os.path.exists(label_file):
-        command = "./bin/VowelDurationFrontEnd %s %s %s" % (input_file, feature_file, label_file)
+        command = "%s/VowelDurationFrontEnd %s %s %s" % (bin_latform, input_file, feature_file, label_file)
         easy_call(command)
 
         # remove leftovers
@@ -294,7 +305,7 @@ def main(wav_file, output_data):
     if not os.path.exists(tmp_dir):
         os.mkdir(tmp_dir)
 
-    cmd = "sbin/sox %s -r 16000 -b 16 %s" % (wav_file, tmp_file)
+    cmd = "sox %s -r 16000 -b 16 %s" % (wav_file, tmp_file)
     easy_call(cmd)
 
     # =================== ACOUSTIC FEATURES =================== #

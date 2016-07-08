@@ -25,18 +25,17 @@ def easy_call(command):
 
 
 def extract_acoustic_features(input_file, feature_file, label_file):
-   if _platform == "linux" or _platform == "linux2":
-        # linux
+    print _platform
+    if _platform == "linux" or _platform == "linux2":
         bin_platform = "bin/_Linux_Release"
     elif _platform == "darwin":
-        # OS X
         bin_platform = "bin/_Darwin_Release"
     elif _platform == "win32":
         print "Error: Windows platform not supported"
         exit(-1)
 
     if os.path.exists(input_file) and os.path.exists(feature_file) and os.path.exists(label_file):
-        command = "%s/VowelDurationFrontEnd %s %s %s" % (bin_latform, input_file, feature_file, label_file)
+        command = "%s/VowelDurationFrontEnd %s %s %s" % (bin_platform, input_file, feature_file, label_file)
         easy_call(command)
 
         # remove leftovers

@@ -79,7 +79,7 @@ if __name__ == "__main__":
     parser.add_argument("--scores_filename", default="", help="output scores matrix")
     args = parser.parse_args()
 
-   if _platform == "linux" or _platform == "linux2":
+    if _platform == "linux" or _platform == "linux2":
         # linux
         bin_platform = "bin/_Linux_Release"
     elif _platform == "darwin":

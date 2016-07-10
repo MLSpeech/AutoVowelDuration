@@ -39,7 +39,7 @@ if __name__ == "__main__":
 
     # binaries
     sox_bin = "sox"
-    hcopy_bin = bin_platform + "HCopy"
+    hcopy_bin = bin_platform + "/HCopy"
     phoneme_classifier_bin = bin_platform + "/PhonemeFrameBasedDecode"
     htk_config = "config/htk.config"
     mfcc_stats_file = "config/mfcc.stats"

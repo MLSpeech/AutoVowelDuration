@@ -42,11 +42,10 @@ License along with Autovot.  If not, see
 
 using namespace std;
 
-// #define WIN_SIZE 0.025
-#define WIN_SIZE 0.01
-#define FRAME_SIZE 0.01
+#define WIN_SIZE 0.010
+#define FRAME_SIZE 0.005
 #define FAST_PITCH_WIN_SIZE 0.025
-#define RAPT_PITCH_WIN_DUR 0.0075 //0.01
+#define RAPT_PITCH_WIN_DUR 0.01
 #define RAPT_PITCH_FRAME_STEP 0.01
 //#define WIN_SIZE 0.005
 //#define FRAME_SIZE 0.001
@@ -278,7 +277,7 @@ int main(int argc, char **argv)
 		infra::vector f0;
 		infra::vector cost;
 		//cout << word_samples.size() << endl;
-		fast_pitch(word_samples, FAST_PITCH_WIN_SIZE, 0.2, 0.001, sampling_rate, f0, cost);
+		fast_pitch(word_samples, FAST_PITCH_WIN_SIZE, 0.2, 0.0, sampling_rate, f0, cost);
 		
 		//  no pitch above a thresh level
 		for (int j=0; j < int(f0.size()); j++)

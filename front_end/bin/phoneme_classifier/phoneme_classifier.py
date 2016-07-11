@@ -96,7 +96,6 @@ if __name__ == "__main__":
     htk_config = "config/htk.config"
     mfcc_stats_file = "config/mfcc.stats"
     phoneme_list_filename = "config/phonemes_39"
-    mfcc_tmp_file = "config/tmp.mfcc"
     mfcc_extractor = bin_platform + "/htk_ceps_dist"
 
     # frame-base phoneme classifier parameters
@@ -113,6 +112,7 @@ if __name__ == "__main__":
     (tmp_fd, tmp_filename) = tempfile.mkstemp()
     wav_filename = tmp_filename + ".16kHz.wav"
     mfc_filename = tmp_filename + ".mfc"
+    mfcc_tmp_file = tmp_filename + ".mfc_delta"
 
     # read Wav file parameters
     wave_file = wave.Wave_read(args.wav_filename)

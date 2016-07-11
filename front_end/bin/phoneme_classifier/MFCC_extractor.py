@@ -38,7 +38,7 @@ if __name__ == "__main__":
         exit(-1)
 
     # binaries
-    sox_bin = "sox"
+    sox_bin = bin_platform + "/sox"
     hcopy_bin = bin_platform + "/HCopy"
     phoneme_classifier_bin = bin_platform + "/PhonemeFrameBasedDecode"
     htk_config = "config/htk.config"

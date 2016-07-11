@@ -27,6 +27,7 @@ def bin_platform():
 # run system commands
 def easy_call(command):
     try:
+        print command
         call(command, shell=True)
     except Exception as exception:
         print "Error: could not execute the following"

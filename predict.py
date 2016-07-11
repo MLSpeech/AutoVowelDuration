@@ -6,8 +6,21 @@ import front_end.extract_features as fe
 import utils.run_back_end as model
 import utils.label2textgrid as l2t
 from utils.utilities import *
+from sys import platform as _platform
 
 __author__ = 'yossiadi'
+
+
+def bin_platform():
+    bin_directory = "."
+    if _platform == "linux" or _platform == "linux2":
+        bin_directory = "bin/_Linux_Release"
+    elif _platform == "darwin":
+        bin_directory = "bin/_Darwin_Release"
+    elif _platform == "win32":
+        print "Error: Windows platform not supported"
+        exit(-1)
+    return bin_directory
 
 
 # run system commands
@@ -28,7 +41,7 @@ def main(wav_filename, output_textgrid_filename, csv_filename):
     print "Converting the wav file to 16khz sample rate"
     #tmp_wav16_filename = wav_filename.replace(".wav", "_16.wav")
     tmp_wav16_filename = generate_tmp_filename("wav")
-    cmd = "sox %s -r 16000 %s" % (wav_filename, tmp_wav16_filename)
+    cmd = "front_end/" + bin_platform() + "/sox %s -r 16000 %s" % (wav_filename, tmp_wav16_filename)
     easy_call(cmd)
 
     # consts

@@ -79,8 +79,8 @@ nrow(dataMANUAL)
 
 # Find observations common to all
 MP <- intersect(dataMANUAL$File, dataSED$file_name)
-MPS <- intersect(MP, dataSED$file_name)
-MPS2 <- intersect(MPS, dataSED$file_name)
+MPS <- intersect(MP, dataSEDNC$file_name)
+MPS2 <- intersect(MPS, dataPENN$file_name)
 
 # Select common observations and sort by filename
 # Rename duration column to be specific to each data source
